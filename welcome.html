@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome - Little Scholars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap">
+<style>
+  :root {
+    --sky-top: #FFE7B3;
+    --sky-bottom: #FFC9A6;
+    --cream: #FFF5E4;
+    --card: #FFFFFF;
+    --ink: #2A2142;
+    --ink-soft: #6B6482;
+    --line: #F0E1CF;
+    --field: #FFF9EF;
+    --coral: #FF7A59;
+    --coral-deep: #E85C3C;
+    --sun: #FFC43D;
+    --grass: #4CC38A;
+    --sky: #6FC3FF;
+    --violet: #B084F3;
+    --pink: #FFB1C8;
+    --shadow: 0 18px 40px -22px rgba(42, 33, 66, 0.35);
+    --font-display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sky-top: #3A2E66;
+      --sky-bottom: #5C3E7A;
+      --cream: #1E183A;
+      --card: #28214A;
+      --ink: #FFF2DC;
+      --ink-soft: #B9B0D4;
+      --line: #3A3268;
+      --field: #221C40;
+      --coral: #FF8A6C;
+      --coral-deep: #D14A2C;
+      --sun: #FFD15C;
+      --grass: #6FD99F;
+      --sky: #7FC9FF;
+      --violet: #C6A4FF;
+      --pink: #FFC2D4;
+      --shadow: 0 18px 44px -18px rgba(0, 0, 0, 0.55);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --sky-top: #3A2E66;
+    --sky-bottom: #5C3E7A;
+    --cream: #1E183A;
+    --card: #28214A;
+    --ink: #FFF2DC;
+    --ink-soft: #B9B0D4;
+    --line: #3A3268;
+    --field: #221C40;
+    --coral: #FF8A6C;
+    --coral-deep: #D14A2C;
+    --sun: #FFD15C;
+    --grass: #6FD99F;
+    --sky: #7FC9FF;
+    --violet: #C6A4FF;
+    --pink: #FFC2D4;
+    --shadow: 0 18px 44px -18px rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--cream);
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+  [hidden] { display: none !important; }
+
+  .wrap {
+    min-height: 100%;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: clamp(18px, 2.5vw, 32px);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 44px; height: 44px;
+    border-radius: 13px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--ink);
+  }
+  .brand-name span { color: var(--coral-deep); }
+  .user-chip { display: flex; align-items: center; gap: 10px; }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--coral), var(--sun));
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    display: grid; place-items: center;
+    box-shadow: 0 4px 0 -1px rgba(42,33,66,0.12);
+  }
+  .user-name { font-weight: 800; font-size: 14px; color: var(--ink); }
+  .logout-btn {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--field);
+    border: 2px solid var(--line);
+    padding: 9px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background .2s, color .2s;
+  }
+  .logout-btn:hover { background: var(--coral); color: #fff; border-color: var(--coral); }
+  .logout-btn svg { width: 14px; height: 14px; }
+
+  .hero-card {
+    position: relative;
+    background: linear-gradient(170deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+    border-radius: 32px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    box-shadow: var(--shadow);
+  }
+  .hero-text h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 4.6vw, 44px);
+    line-height: 1.05;
+    margin: 0 0 6px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero-text h1 em { font-style: normal; color: var(--coral-deep); }
+  .hero-text p {
+    margin: 0;
+    font-weight: 700;
+    color: var(--ink);
+    opacity: 0.78;
+    max-width: 44ch;
+  }
+  .hero-owl { width: 160px; flex-shrink: 0; }
+  .hero-owl svg { width: 100%; height: auto; display: block; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 18px 16px;
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 0;
+    box-shadow: 0 6px 0 -3px rgba(42,33,66,0.06);
+  }
+  .stat-icon {
+    width: 36px; height: 36px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .stat-icon svg { width: 20px; height: 20px; }
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--ink);
+    margin: 10px 0 12px;
+    padding-left: 4px;
+  }
+
+  .activities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .activity {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 20px 18px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform .15s ease;
+    box-shadow: 0 8px 0 -4px rgba(42,33,66,0.08);
+    font: inherit;
+    color: var(--ink);
+    display: flex; flex-direction: column; gap: 6px;
+    min-width: 0;
+  }
+  .activity:hover { transform: translateY(-3px); }
+  .activity:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+  .activity-icon {
+    width: 44px; height: 44px;
+    border-radius: 14px;
+    display: grid; place-items: center;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .activity-icon svg { width: 24px; height: 24px; }
+  .activity h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    margin: 2px 0 0;
+  }
+  .activity p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .challenge {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 28px;
+    padding: 24px 26px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  :root[data-theme="dark"] .challenge,
+  :root:not([data-theme="light"]) .challenge {
+    background: linear-gradient(135deg, #3A2E66, #5C3E7A);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .challenge {
+      background: linear-gradient(135deg, #3A2E66, #5C3E7A);
+    }
+  }
+  .challenge::before {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--sun) 0%, transparent 70%);
+    opacity: 0.35;
+    border-radius: 50%;
+  }
+  .challenge-text { position: relative; z-index: 1; min-width: 0; }
+  .challenge-text .tag {
+    display: inline-block;
+    background: var(--sun);
+    color: var(--ink);
+    font-weight: 800; font-size: 11px;
+    letter-spacing: 0.6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .challenge-text h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    margin: 0 0 4px;
+    color: #fff;
+  }
+  .challenge-text p {
+    margin: 0;
+    font-weight: 700;
+    opacity: 0.8;
+    font-size: 14px;
+  }
+  .challenge-btn {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--coral);
+    color: #fff;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 -1px var(--coral-deep);
+    display: inline-flex; align-items: center; gap: 8px;
+    position: relative; z-index: 1;
+    transition: transform .08s;
+  }
+  .challenge-btn:hover { background: var(--coral-deep); }
+  .challenge-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 -1px var(--coral-deep); }
+  .challenge-btn svg { width: 16px; height: 16px; }
+
+  .footer-note {
+    text-align: center;
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 8px 0 4px;
+  }
+  .footer-note span { color: var(--coral-deep); }
+
+  @media (max-width: 760px) {
+    .activities { grid-template-columns: repeat(2, 1fr); }
+    .hero-card { grid-template-columns: 1fr; }
+    .hero-owl { width: 120px; justify-self: center; }
+    .challenge { grid-template-columns: 1fr; }
+    .challenge-btn { justify-self: start; }
+  }
+  @media (max-width: 480px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .stat-card:nth-child(3) { grid-column: span 2; }
+    .topbar { padding: 10px 12px; border-radius: 20px; }
+    .logout-btn span { display: none; }
+    .user-name { font-size: 13px; }
+    .hero-card { padding: 24px 20px; border-radius: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="30" height="30" fill="none" aria-hidden="true">
+          <path d="M8 12 C 8 10, 10 9, 12 9 L22 9 C 24 9, 25 10, 25 12 L25 38 C25 36, 23 35, 21 35 L12 35 C 10 35, 8 36, 8 38 Z" fill="#FF7A59"/>
+          <path d="M25 12 C25 10, 26 9, 28 9 L36 9 C 38 9, 40 10, 40 12 L40 38 C 40 36, 38 35, 36 35 L28 35 C 26 35, 25 36, 25 38 Z" fill="#FFC43D"/>
+          <path d="M34 15 L36 20 L41 21 L37 24 L38 29 L34 26 L30 29 L31 24 L27 21 L32 20 Z" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="brand-name">Little <span>Scholars</span></div>
+    </div>
+    <div class="user-chip">
+      <div class="avatar" id="user-avatar" aria-hidden="true">S</div>
+      <div class="user-name" id="user-name">Student</div>
+      <button class="logout-btn" id="logout-btn" type="button" aria-label="Log out">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14 7 V5 C14 4 13 3 12 3 L5 3 C4 3 3 4 3 5 L3 19 C3 20 4 21 5 21 L12 21 C13 21 14 20 14 19 V17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M9 12 H21 M17 7 L22 12 L17 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span>Log out</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero-card">
+    <div class="hero-text">
+      <h1>Welcome back, <em id="greeting-name">friend</em>!</h1>
+      <p>Ready for today's adventure? You have new stories, puzzles and badges waiting.</p>
+    </div>
+    <div class="hero-owl" aria-hidden="true">
+      <svg viewBox="0 0 220 200" fill="none">
+        <ellipse cx="110" cy="188" rx="80" ry="8" fill="#2A2142" opacity="0.12"/>
+        <ellipse cx="110" cy="110" rx="62" ry="66" fill="#8B6BE3"/>
+        <ellipse cx="110" cy="128" rx="42" ry="48" fill="#FFE7B3"/>
+        <circle cx="88" cy="96" r="22" fill="#fff"/>
+        <circle cx="132" cy="96" r="22" fill="#fff"/>
+        <circle cx="93" cy="99" r="10" fill="#2A2142"/>
+        <circle cx="137" cy="99" r="10" fill="#2A2142"/>
+        <circle cx="96" cy="95" r="3" fill="#fff"/>
+        <circle cx="140" cy="95" r="3" fill="#fff"/>
+        <path d="M110 112 L102 124 L118 124 Z" fill="#FF9F3B"/>
+        <ellipse cx="72" cy="132" rx="8" ry="5" fill="#FFB1C8" opacity="0.8"/>
+        <ellipse cx="148" cy="132" rx="8" ry="5" fill="#FFB1C8" opacity="0.8"/>
+        <path d="M58 112 Q46 128 58 152 Q72 146 70 128 Z" fill="#6E54C4"/>
+        <path d="M162 112 Q174 128 162 152 Q148 146 150 128 Z" fill="#6E54C4"/>
+        <polygon points="110,52 70,66 110,80 150,66" fill="#2A2142"/>
+        <rect x="106" y="46" width="8" height="10" rx="2" fill="#2A2142"/>
+        <circle cx="150" cy="80" r="3" fill="#FFC43D"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--sun)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L14 10 L21 10.5 L15.5 15 L17.5 21.5 L12 17.5 L6.5 21.5 L8.5 15 L3 10.5 L10 10 Z" fill="#fff"/></svg>
+      </div>
+      <div class="stat-value">127</div>
+      <div class="stat-label">Stars earned</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--coral)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L8 9 L11 9 L9 15 L13 9 L10 9 L14 3 Z" fill="#fff"/></svg>
+      </div>
+      <div class="stat-value">8</div>
+      <div class="stat-label">Day streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:var(--grass)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 4 H13 L17 8 V20 H5 Z" fill="#fff"/><path d="M13 4 V8 H17" stroke="#4CC38A" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div class="stat-value">14</div>
+      <div class="stat-label">Books read</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">What would you like to do today?</h2>
+  <div class="activities">
+    <button class="activity" type="button">
+      <div class="activity-icon" style="background:var(--coral)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5 C 4 4, 5 3, 6 3 L11 3 V19 L6 19 C 5 19, 4 20, 4 21 Z" fill="#fff"/><path d="M11 3 L18 3 C 19 3, 20 4, 20 5 V21 C 20 20, 19 19, 18 19 L11 19 Z" fill="#fff" opacity="0.8"/></svg>
+      </div>
+      <h3>Read</h3>
+      <p>5 new stories</p>
+    </button>
+    <button class="activity" type="button">
+      <div class="activity-icon" style="background:var(--grass)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M7 11 H17 M12 6 V16 M4 8 L4 14 Q 4 18, 8 18 H16 Q 20 18, 20 14 V10 Q 20 6, 16 6 H8 Q 4 6, 4 10 Z" stroke="#fff" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg>
+      </div>
+      <h3>Play</h3>
+      <p>3 fun games</p>
+    </button>
+    <button class="activity" type="button">
+      <div class="activity-icon" style="background:var(--sky)">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2.2" fill="none"/><path d="M3 12 H21 M12 3 Q 16 7, 16 12 Q 16 17, 12 21 Q 8 17, 8 12 Q 8 7, 12 3" stroke="#fff" stroke-width="2.2" fill="none"/></svg>
+      </div>
+      <h3>Explore</h3>
+      <p>Around the world</p>
+    </button>
+    <button class="activity" type="button">
+      <div class="activity-icon" style="background:var(--violet)">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 18 L6 14 L10 17 L14 10 L20 18" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" fill="none"/><path d="M17 4 L19 6 L14 11 L12 9 Z" fill="#fff"/></svg>
+      </div>
+      <h3>Create</h3>
+      <p>Draw, build, make</p>
+    </button>
+  </div>
+
+  <div class="challenge">
+    <div class="challenge-text">
+      <span class="tag">Today's Challenge</span>
+      <h2>Learn 3 new words</h2>
+      <p>Finish today's word quest and earn 10 shiny stars.</p>
+    </div>
+    <button class="challenge-btn" type="button">
+      Start now
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12 H19 M14 6 L20 12 L14 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="footer-note">Keep going <span>&#9733;</span> every star counts!</div>
+</div>
+
+<script>
+  let name = 'friend';
+  try { name = localStorage.getItem('ls:user') || 'friend'; } catch(e) {}
+  document.getElementById('greeting-name').textContent = name;
+  document.getElementById('user-name').textContent = name === 'friend' ? 'Student' : name;
+  document.getElementById('user-avatar').textContent = (name[0] || 'S').toUpperCase();
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    try { localStorage.removeItem('ls:user'); } catch(e) {}
+    location.href = 'index.html';
+  });
+</script>
+</body>
+</html>
