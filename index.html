@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap">
 <style>
-  /* Layout: a two-panel "storybook" â€” a sky-and-mascot illustration on the left, a soft card with the login form on the right; stacked on phones. */
+  /* Layout: a two-panel "storybook" — a sky-and-mascot illustration on the left, a soft card with the login form on the right; stacked on phones. */
   :root {
     --sky-top: #FFE7B3;
     --sky-bottom: #FFC9A6;
@@ -1378,7 +1378,7 @@
     });
   });
 
-  // Login submit â†’ go to welcome page
+  // Login submit → go to welcome page
   const form = document.getElementById('form-student');
   const btn = form.querySelector('.btn');
   form.addEventListener('submit', (e) => {
@@ -1388,7 +1388,7 @@
       return;
     }
     const original = btn.innerHTML;
-    btn.innerHTML = 'Yay! Signing you inâ€¦';
+    btn.innerHTML = 'Yay! Signing you in...';
     btn.style.background = 'var(--grass)';
     btn.style.boxShadow = '0 10px 0 -2px #2EA06E';
     const raw = loginIdInput.value.trim();
@@ -1457,7 +1457,7 @@
     const el = document.getElementById(id);
     el?.addEventListener('click', () => {
       const original = el.innerHTML;
-      el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.9s" repeatCount="indefinite"/></circle></svg> Connecting to GitHubâ€¦';
+      el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="40 20"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.9s" repeatCount="indefinite"/></circle></svg> Connecting to GitHub...';
       el.disabled = true;
       setTimeout(() => { el.innerHTML = original; el.disabled = false; }, 1600);
     });
@@ -1501,7 +1501,7 @@
     }
   });
 
-  // Signup submit â†’ friendly feedback, then straight to welcome
+  // Signup submit → friendly feedback, then straight to welcome
   const suBtn = signupForm.querySelector('.btn');
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -1526,4 +1526,3 @@
 
 </body>
 </html>
-
